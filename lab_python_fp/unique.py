@@ -1,36 +1,37 @@
 class Unique(object):
     def __init__(self, items, **kwargs):
         self.ignore_case = False
-        self.current_elements = -1
         self.items = items
+        self.iter = -1
         if 'ignore_case' in kwargs:
             self.ignore_case = kwargs['ignore_case']
-        self.items = self.make_unique(items)
+        self.items = self.Uniq_maker(items)
 
-    def make_unique(self, items):
+    def Uniq_maker(self, items):
         uniqlist = list()
-        for j in items:
-            if self.is_unique(j, uniqlist):
-                uniqlist.append(j)
+        for i in items:
+            if self.is_uniq(i, uniqlist):
+                uniqlist.append(i)
         return uniqlist
 
-    def is_unique(self, el, ul):
-        if type(el) is str and self.ignore_case:
-            for i in ul:
-                if type(i) is str:
-                    if el.lower() == i.lower():
+    def is_uniq(self, first, second):
+        if type(first) is str and self.ignore_case:
+            for j in second:
+                if type(j) is str:
+                    if first.lower() == j.lower():
                         return False
             return True
-        elif el not in ul:
+        elif first not in second:
             return True
         return False
 
     def __next__(self):
         try:
-            self.current_elements += 1
-            return self.items[self.current_elements]
+            self.iter += 1
+            return self.items[self.iter]
         except:
             raise StopIteration
+
 
     def __iter__(self):
         return self

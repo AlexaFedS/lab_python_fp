@@ -6,15 +6,15 @@ goods = [
 def field(items, *args):
     assert len(args) > 0
     result = list()
-    buf = dict()
+    buffer = dict()
     for i in items:
         for j in args:
             try:
-                buf[j] = i[j]
+                buffer[j] = i[j]
             except:
                 pass
-        result.append(buf.copy())
-        buf.clear()
+        result.append(buffer.copy())
+        buffer.clear()
     print(result)
     return result
 

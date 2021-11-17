@@ -1,6 +1,6 @@
 def print_result(function_to_decorate):
-    def use_function():
-        result = function_to_decorate()
+    def use_function(*args):
+        result = function_to_decorate(*args)
         print(function_to_decorate.__name__)
         if type(result) is list:
             for i in result:
@@ -12,7 +12,7 @@ def print_result(function_to_decorate):
             print(result)
 
         return result
-    return use_function()
+    return use_function
 
 @print_result
 def test_1():
@@ -24,7 +24,7 @@ def test_2():
 
 @print_result
 def test_3():
-    return {'a': 1, 'b' : 2}
+    return {'a': 1, 'b': 2}
 
 @print_result
 def test_4():
